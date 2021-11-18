@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore.Controllers
+namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
