@@ -1,0 +1,18 @@
+﻿@model BookStore.Entities.Products.Book
+@{
+}
+<div class="info">
+    <div class="container">
+        <div class="intro">
+            <img src="<%- image%>" alt="" class="prepodImage">
+            <div class="about">
+                <h1>@Model.Name</h1>
+                Цена: <span>@Model.Cost</span><br><br>
+            </div>
+        </div>
+        <div class="history">
+            <h2>История:</h2>
+            <%- history%>
+        </div>
+    </div>
+</div>

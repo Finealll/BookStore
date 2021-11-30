@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BookStore.Entities.BaseObjects.ProductObject>
+@foreach(var product in Model)
+{
+    <div class="bg-success">
+        <div>@product.Name</div>
+        <div>@product.Cost</div>
+    </div>
+}
