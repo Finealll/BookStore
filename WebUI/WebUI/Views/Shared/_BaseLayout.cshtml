@@ -10,8 +10,8 @@
     <header class="container-fluid bg-info p-2">
         <h1 class="text-white d-inline-block">Книжный погребок</h1>
         <nav class="d-inline-block float-right p-3">
-            <a asp-route="Product/Index" class="text-white ml-3">Все товары</a>
-            <a asp-route="#" class="text-white ml-3">Книги</a>
+            <a href="@Url.Action("Index", "Admin")" class="text-white ml-3">Админка</a>
+            <a asp-action="Book" class="text-white ml-3">Книги</a>
             <a asp-route="#" class="text-white ml-3">Журналы</a>
             <a asp-route="#" class="text-white ml-3">Комиксы</a>
             <a asp-route="#" class="text-white ml-3">Сувениры</a>

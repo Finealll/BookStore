@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookStore.Entities.BaseObjects.ProductObject>
+
+<div class="container">
+    <br />
+    <h1 class="display-5 ">Все продукты по запросу "@ViewBag.SearchText":</h1>
+    <div class="row bg-light">
+        @if (Model != null){
+            foreach(var product in Model)
+            {
+                <div class="col-2 rounded p-3" style="height: 240px;">
+                    <div class="" style="background-image: url(@product.PhotoLink); height: 80%; width: inherit; background-size:cover; background-repeat:no-repeat;"> </div>
+                    <div>@product.Name</div>
+                    <div>@product.Cost</div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3>Продуктов нема!</h3>
+        }
+
+    </div>
+</div>
