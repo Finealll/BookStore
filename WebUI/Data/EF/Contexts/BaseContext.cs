@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using BookStore;
 using BookStore.Entities.BaseObjects;
 using BookStore.Entities.Products;
+using BookStore.Entities.BookAdditionals;
+using BookStore.Entities;
 
 namespace Data.EF.Contexts
 {
@@ -18,16 +20,22 @@ namespace Data.EF.Contexts
         #region DbSets
         public DbSet<BaseObject> BaseObjects { get; set; }
         public DbSet<TypeObject> TypeObjects { get; set; }
+        public DbSet<DictObject> DictObjects { get; set; }
         public DbSet<ProductObject> ProductObjects { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Jenre> Jenres { get; set; }
+        public DbSet<Author> Authors { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BaseObject>().ToTable("BaseObjects");
             modelBuilder.Entity<TypeObject>().ToTable("TypeObjects");
+            modelBuilder.Entity<DictObject>().ToTable("DictObjects");
             modelBuilder.Entity<ProductObject>().ToTable("ProductObjects");
             modelBuilder.Entity<Book>().ToTable("Books");
+            modelBuilder.Entity<Jenre>().ToTable("Jenres");
+            modelBuilder.Entity<Author>().ToTable("Authors");
 
         }
     }

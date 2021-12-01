@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Admin\Entities\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 

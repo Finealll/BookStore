@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using BookStore.Entities.BookAdditionals;
 
 namespace BookStore.Entities.Products
 {
@@ -31,5 +32,25 @@ namespace BookStore.Entities.Products
         /// Получает или задает Тираж
         /// </summary>
         public int? Circulation { get; set; }
+
+        /// <summary>
+        /// Получает или задает Жанр
+        /// </summary>
+        public virtual Jenre Jenre { get; set; }
+
+        /// <summary>
+        /// Получает или задает ID Жанра
+        /// </summary>
+        public int JenreId { get; set; }
+
+        /// <summary>
+        /// Получает или задает Автора
+        /// </summary>
+        public virtual Author Author { get; set; }
+
+        /// <summary>
+        /// Получает или задает Id автора
+        /// </summary>
+        public int AuthorId { get; set; }
     }
 }

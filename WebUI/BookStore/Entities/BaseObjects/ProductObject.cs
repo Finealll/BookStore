@@ -19,12 +19,7 @@ namespace BookStore.Entities.BaseObjects
         /// <summary>
         /// Получает или задает Имя товара
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Получает или задает Производитель товара
-        /// </summary>
-        public string Manufacturer { get; set; }    
+        public string Name { get; set; }   
 
         /// <summary>
         /// Получает или задает Ссылка на фото

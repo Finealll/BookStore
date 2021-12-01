@@ -4,14 +4,16 @@ using Data.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211201090923_AddAuthors")]
+    partial class AddAuthors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,9 +108,6 @@ namespace Data.Migrations
                 {
                     b.HasBaseType("BookStore.Entities.BaseObjects.ProductObject");
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Circulation")
                         .HasColumnType("int");
 
@@ -123,8 +122,6 @@ namespace Data.Migrations
 
                     b.Property<int?>("YearOfPublishing")
                         .HasColumnType("int");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("JenreId");
 
@@ -178,12 +175,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("BookStore.Entities.Products.Book", b =>
                 {
-                    b.HasOne("BookStore.Entities.BookAdditionals.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BookStore.Entities.BaseObjects.ProductObject", null)
                         .WithOne()
                         .HasForeignKey("BookStore.Entities.Products.Book", "ID")
@@ -195,8 +186,6 @@ namespace Data.Migrations
                         .HasForeignKey("JenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Author");
 
                     b.Navigation("Jenre");
                 });

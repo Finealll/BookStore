@@ -19,7 +19,7 @@ namespace BookStore.Entities.BaseObjects
         /// <summary>
         /// Получает или задает Дату создания
         /// </summary>
-        public DateTime? CreateDay { get; set; }
+        public DateTime? CreateDay { get; set; } = DateTime.Now;
 
 
         /// <summary>

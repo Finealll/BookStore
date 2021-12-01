@@ -10,8 +10,11 @@ namespace BookStore.Entities.BaseObjects
     /// <summary>
     /// Объект словаря
     /// </summary>
-    class DictObject : TypeObject
+    public class DictObject : TypeObject
     {
-        string Name { get; set; }       //Нвзвание словаря
+        /// <summary>
+        /// Имя объекта словаря
+        /// </summary>
+        public string Name { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using Data.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211201004809_AddNameOnDictObject")]
+    partial class AddNameOnDictObject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,6 +72,9 @@ namespace Data.Migrations
                     b.Property<string>("Format")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Manufacturer")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -82,19 +87,6 @@ namespace Data.Migrations
                     b.ToTable("ProductObjects");
                 });
 
-            modelBuilder.Entity("BookStore.Entities.BookAdditionals.Author", b =>
-                {
-                    b.HasBaseType("BookStore.Entities.BaseObjects.DictObject");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("Authors");
-                });
-
             modelBuilder.Entity("BookStore.Entities.BookAdditionals.Jenre", b =>
                 {
                     b.HasBaseType("BookStore.Entities.BaseObjects.DictObject");
@@ -105,9 +97,6 @@ namespace Data.Migrations
             modelBuilder.Entity("BookStore.Entities.Products.Book", b =>
                 {
                     b.HasBaseType("BookStore.Entities.BaseObjects.ProductObject");
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("Circulation")
                         .HasColumnType("int");
@@ -123,8 +112,6 @@ namespace Data.Migrations
 
                     b.Property<int?>("YearOfPublishing")
                         .HasColumnType("int");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("JenreId");
 
@@ -158,15 +145,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookStore.Entities.BookAdditionals.Author", b =>
-                {
-                    b.HasOne("BookStore.Entities.BaseObjects.DictObject", null)
-                        .WithOne()
-                        .HasForeignKey("BookStore.Entities.BookAdditionals.Author", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BookStore.Entities.BookAdditionals.Jenre", b =>
                 {
                     b.HasOne("BookStore.Entities.BaseObjects.DictObject", null)
@@ -178,12 +156,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("BookStore.Entities.Products.Book", b =>
                 {
-                    b.HasOne("BookStore.Entities.BookAdditionals.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BookStore.Entities.BaseObjects.ProductObject", null)
                         .WithOne()
                         .HasForeignKey("BookStore.Entities.Products.Book", "ID")
@@ -195,8 +167,6 @@ namespace Data.Migrations
                         .HasForeignKey("JenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Author");
 
                     b.Navigation("Jenre");
                 });

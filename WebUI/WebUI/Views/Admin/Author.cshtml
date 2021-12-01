@@ -1,0 +1,35 @@
+﻿@model BookStore.Entities.BookAdditionals.Author
+<h2>Добавление Автора:</h2>
+<form method="post">
+    <label asp-for="Name">Имя:</label>
+    <input asp-for="Name" />
+    <br />
+    <label asp-for="Birthday">Дата рождения:</label>
+    <input asp-for="Birthday" />
+    <br />
+    <label asp-for="ImageLink">Ссылка на фото:</label>
+    <input asp-for="ImageLink" />
+    <br />
+    <label asp-for="Description">Описание:</label>
+    <textarea asp-for="Description" ></textarea>
+    <br />
+
+    <button type="submit">Отправить</button>
+</form>
+<h2>Список авторов:</h2>
+<table>
+    <thead>
+        <tr>Id</tr>
+        <tr>Имя</tr>
+        <tr>Дата рождения</tr>
+    </thead>
+    <tbody>
+        @foreach(BookStore.Entities.BookAdditionals.Author author in ViewBag.Authors){
+            <tr>
+                <td>@author.ID</td>
+                <td>@author.Name</td>
+                <td>@author.Birthday.ToString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

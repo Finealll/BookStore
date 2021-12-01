@@ -1,0 +1,84 @@
+﻿@model BookStore.Entities.Products.Book
+<h2>Добавление книги:</h2>
+<form method="post">
+    <label asp-for="Name">Название:</label>
+    <input asp-for="Name" />
+    <br />
+    <label asp-for="PhotoLink">Ссылка на фото:</label>
+    <input asp-for="PhotoLink" />
+    <br />
+    <label asp-for="AuthorId">Автор:</label>
+    <select asp-for="AuthorId">
+        @foreach(BookStore.Entities.BookAdditionals.Author author in ViewBag.Authors)
+        {
+            <option value="@author.ID">@author.Name</option>
+        }
+    </select>
+    <br />
+    <label asp-for="JenreId">Жанр:</label>
+    <select asp-for="JenreId">
+        @foreach(BookStore.Entities.BookAdditionals.Jenre jenre in ViewBag.Jenres)
+        {
+            <option value="@jenre.ID">@jenre.Name</option>
+        }
+    </select>
+    <br />
+    <label asp-for="YearOfPublishing">Год выпуска:</label>
+    <input asp-for="YearOfPublishing" />
+    <br />
+    <label asp-for="ISBN">ISBN:</label>
+    <input asp-for="ISBN" />
+    <br />
+    <label asp-for="NumberOfPages">Количество страниц:</label>
+    <input asp-for="NumberOfPages" />
+    <br />
+    <label asp-for="Circulation">Тираж:</label>
+    <input asp-for="Circulation" />
+    <br />
+    <label asp-for="Weight">Вес:</label>
+    <input asp-for="Weight" />
+    <br />
+    <label asp-for="Format">Формат:</label>
+    <input asp-for="Format" />
+    <br />
+    <label asp-for="Cost">Цена:</label>
+    <input asp-for="Cost" />
+    <br />
+    <button type="submit">Отправить</button>
+</form>
+
+
+<h2>Список книг:</h2>
+<table>
+    <thead>
+        <tr>Id</tr>
+        <tr>Название</tr>
+        <tr>Дата рождения</tr>
+        <tr>Автор</tr>
+        <tr>Жанр</tr>
+        <tr>Год издания</tr>
+        <tr>ISBN</tr>
+        <tr>Количество страниц</tr>
+        <tr>Тираж</tr>
+        <tr>Вес</tr>
+        <tr>Размер</tr>
+        <tr>Цена</tr>
+    </thead>
+    <tbody>
+        @foreach(BookStore.Entities.Products.Book book in ViewBag.Books){
+            <tr>
+                <td>@book.ID</td>
+                <td>@book.Name</td>
+                <td>@book.Author</td>
+                <td>@book.Jenre</td>
+                <td>@book.YearOfPublishing</td>
+                <td>@book.ISBN</td>
+                <td>@book.NumberOfPages</td>
+                <td>@book.Circulation</td>
+                <td>@book.Weight</td>
+                <td>@book.Format</td>
+                <td>@book.Cost</td>
+            </tr>
+        }
+    </tbody>
+</table>

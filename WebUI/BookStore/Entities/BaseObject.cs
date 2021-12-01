@@ -21,7 +21,7 @@ namespace BookStore
     {
         [Key]
         public int ID { get; set; }
-        public bool Hidden { get; set; }
+        public bool Hidden { get; set; } = false;
         public byte[] Rowversion { get; set; }
     }
 }
