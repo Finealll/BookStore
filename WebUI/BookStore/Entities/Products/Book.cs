@@ -14,6 +14,11 @@ namespace BookStore.Entities.Products
     public class Book : BaseObjects.ProductObject
     {
         /// <summary>
+        /// Получает и задает издателя
+        /// </summary>
+        public string Publisher { get; set; }
+
+        /// <summary>
         /// Получает и задает год издания
         /// </summary>
         public int? YearOfPublishing { get; set; }
