@@ -5,4 +5,40 @@
 <div class="container text-center">
     <h1 class="display-4 m-b-5">Книги на любой вкус, и не только!</h1>
     <img class="w-75" src="Images/BookIsALife.webp"/>
+    <br />
+    @if (ViewBag.Detectives != null)
+    {
+        <h2>Популярные детективы</h2>
+        <div class="slider multiple-items">   
+            @foreach (BookStore.Entities.Products.Book product in ViewBag.Detectives)
+            {
+                <a href="@Url.Action("Book", "Product", new {id = product.ID})" class="rounded p-3" style="height: 240px;">
+                    <div class="" style="background-image: url(@product.PhotoLink); height: 80%; background-size:cover; background-repeat:no-repeat;"> </div>
+                    <div>@product.Name</div>
+                    <div>@product.Cost</div>
+                </a>
+            }
+        </div>
+    }
+
+    <br />
+    @if (ViewBag.Romans != null)
+    {
+        <h2>Популярные романы</h2>
+        <div class="slider multiple-items">   
+            @foreach (BookStore.Entities.Products.Book product in ViewBag.Romans)
+            {
+                <a href="@Url.Action("Book", "Product", new {id = product.ID})" class="rounded p-3" style="height: 240px;">
+                    <div class="" style="background-image: url(@product.PhotoLink); height: 80%; background-size:cover; background-repeat:no-repeat;"> </div>
+                    <div>@product.Name</div>
+                    <div>@product.Cost</div>
+                </a>
+            }
+        </div>
+    }
+
+
+
+
 </div>
+

@@ -13,6 +13,7 @@ using Arch.EntityFrameworkCore.UnitOfWork.Collections;
 using Data.EF.Contexts;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using BookStore.Entities.BaseObjects;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebUI
 {
@@ -33,6 +34,14 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
 
             // use in memory for testing.
             services
@@ -58,7 +67,8 @@ namespace WebUI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
 
             app.UseEndpoints(endpoints =>
             {

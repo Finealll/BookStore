@@ -15,6 +15,11 @@ namespace BookStore.Entities.BookAdditionals
         public DateTime? Birthday;
 
         /// <summary>
+        /// Получает или задает Дату смерти автора
+        /// </summary>
+        public DateTime? DayOfTheDead;
+
+        /// <summary>
         /// Получает или задает Описание автора
         /// </summary>
         public string Description { get; set; }

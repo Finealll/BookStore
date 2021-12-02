@@ -1,18 +1,37 @@
 ﻿@model BookStore.Entities.Products.Book
-@{
-}
-<div class="info">
-    <div class="container">
-        <div class="intro">
-            <img src="<%- image%>" alt="" class="prepodImage">
-            <div class="about">
-                <h1>@Model.Name</h1>
-                Цена: <span>@Model.Cost</span><br><br>
-            </div>
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="w-100 rounded" src="@Model.PhotoLink"/>
         </div>
-        <div class="history">
-            <h2>История:</h2>
-            <%- history%>
+        <div class="col-8">
+            <div class="display-3">@Model.Name</div>
+            <h5><a href="@Url.Action("Author", "BookAdditional", new {id = @Model.AuthorId})">@Model.Author.Name</a></h5>
+            <br />
+            <ul>
+                @if(Model.Publisher != null) 
+                    {<li>Издатель: @Model.Publisher</li>}
+                @if(Model.YearOfPublishing != null) 
+                    {<li>Год издания: @Model.YearOfPublishing</li>}
+                @if(Model.ISBN != null) 
+                    {<li>ISBN: @Model.ISBN</li>}
+                @if(Model.NumberOfPages != null) 
+                    {<li>Количество страниц: @Model.NumberOfPages</li>}
+                @if(Model.Circulation != null) 
+                    {<li>Тираж: @Model.Circulation</li>}
+                @if(Model.Jenre.Name != null) 
+                    {<li>Жанр: <a>@Model.Jenre.Name</a></li>}
+                @if(Model.Weight != null) 
+                    {<li>Вес: @Model.Weight г.</li>}
+                @if(Model.Format != null) 
+                    {<li>Размер: @Model.Format</li>}
+            </ul>
+            <br />
+            <h2 class="d-inline-block"><span class="badge badge-primary">@Model.Cost р.</span></h2>
+            <button type="button" class="btn btn-primary d-inline-block float-right">В корзину</button>
+            <br />
         </div>
     </div>
 </div>

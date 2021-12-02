@@ -1,21 +1,21 @@
-﻿@model BookStore.Entities.BookAdditionals.Jenre
-<h2>Добавление Жанра:</h2>
+﻿@model BookStore.Entities.Accounting.Role
+<h2>Добавление Роли:</h2>
 <form method="post">
     <label asp-for="Name">Название:</label>
     <input asp-for="Name" />
     <button type="submit">Отправить</button>
 </form>
-<h2>Список жанров:</h2>
+<h2>Список ролей:</h2>
 <table>
     <thead>
         <tr>Id</tr>
         <tr>Название</tr>
     </thead>
     <tbody>
-        @foreach(BookStore.Entities.BookAdditionals.Jenre jenre in ViewBag.Jenres){
+        @foreach(BookStore.Entities.Accounting.Role role in ViewBag.Roles){
             <tr>
-                <td>@jenre.ID</td>
-                <td>@jenre.Name</td>
+                <td>@role.ID</td>
+                <td>@role.Name</td>
             </tr>
         }
     </tbody>

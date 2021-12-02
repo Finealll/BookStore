@@ -4,14 +4,16 @@ using Data.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211201222019_AddFieldsAuthorsDayOfTheDeadProductDescription")]
+    partial class AddFieldsAuthorsDayOfTheDeadProductDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,30 +52,6 @@ namespace Data.Migrations
                     b.ToTable("TypeObjects");
                 });
 
-            modelBuilder.Entity("BookStore.Entities.Accounting.User", b =>
-                {
-                    b.HasBaseType("BookStore.Entities.BaseObjects.TypeObject");
-
-                    b.Property<DateTime?>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("BookStore.Entities.BaseObjects.DictObject", b =>
                 {
                     b.HasBaseType("BookStore.Entities.BaseObjects.TypeObject");
@@ -107,13 +85,6 @@ namespace Data.Migrations
                         .HasColumnType("float");
 
                     b.ToTable("ProductObjects");
-                });
-
-            modelBuilder.Entity("BookStore.Entities.Accounting.Role", b =>
-                {
-                    b.HasBaseType("BookStore.Entities.BaseObjects.DictObject");
-
-                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("BookStore.Entities.BookAdditionals.Author", b =>
@@ -177,21 +148,6 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookStore.Entities.Accounting.User", b =>
-                {
-                    b.HasOne("BookStore.Entities.BaseObjects.TypeObject", null)
-                        .WithOne()
-                        .HasForeignKey("BookStore.Entities.Accounting.User", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Entities.Accounting.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId");
-
-                    b.Navigation("Role");
-                });
-
             modelBuilder.Entity("BookStore.Entities.BaseObjects.DictObject", b =>
                 {
                     b.HasOne("BookStore.Entities.BaseObjects.TypeObject", null)
@@ -206,15 +162,6 @@ namespace Data.Migrations
                     b.HasOne("BookStore.Entities.BaseObjects.TypeObject", null)
                         .WithOne()
                         .HasForeignKey("BookStore.Entities.BaseObjects.ProductObject", "ID")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BookStore.Entities.Accounting.Role", b =>
-                {
-                    b.HasOne("BookStore.Entities.BaseObjects.DictObject", null)
-                        .WithOne()
-                        .HasForeignKey("BookStore.Entities.Accounting.Role", "ID")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
@@ -260,11 +207,6 @@ namespace Data.Migrations
                     b.Navigation("Author");
 
                     b.Navigation("Jenre");
-                });
-
-            modelBuilder.Entity("BookStore.Entities.Accounting.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

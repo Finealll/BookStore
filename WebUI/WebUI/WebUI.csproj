@@ -19,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\" />
+    <ProjectReference Include="..\BookStore\BookStore.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookStore\BookStore.csproj" />
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

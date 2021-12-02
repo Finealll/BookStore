@@ -37,6 +37,11 @@ namespace BookStore.Entities.BaseObjects
         public string Format { get; set; }
 
         /// <summary>
+        /// Получает или задает Описание товара
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Получает или задает Текущую цену
         /// </summary>
         public double Cost { get; set; }

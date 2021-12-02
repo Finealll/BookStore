@@ -8,6 +8,7 @@ using BookStore;
 using BookStore.Entities.BaseObjects;
 using BookStore.Entities.Products;
 using BookStore.Entities.BookAdditionals;
+using BookStore.Entities.Accounting;
 using BookStore.Entities;
 
 namespace Data.EF.Contexts
@@ -25,10 +26,13 @@ namespace Data.EF.Contexts
         public DbSet<Book> Books { get; set; }
         public DbSet<Jenre> Jenres { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<BaseObject>().ToTable("BaseObjects");
             modelBuilder.Entity<TypeObject>().ToTable("TypeObjects");
             modelBuilder.Entity<DictObject>().ToTable("DictObjects");
@@ -36,6 +40,8 @@ namespace Data.EF.Contexts
             modelBuilder.Entity<Book>().ToTable("Books");
             modelBuilder.Entity<Jenre>().ToTable("Jenres");
             modelBuilder.Entity<Author>().ToTable("Authors");
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Role>().ToTable("Roles");
 
         }
     }

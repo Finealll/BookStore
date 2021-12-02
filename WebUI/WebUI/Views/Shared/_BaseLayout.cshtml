@@ -5,20 +5,44 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
     <header class="container-fluid bg-info p-2">
-        <h1 class="text-white d-inline-block">Книжный погребок</h1>
+        <h1 class="d-inline-block"><a class="text-decoration-none text-white"href="@Url.Action("Index", "Home")">Книжный погребок</a></h1>
         <nav class="d-inline-block float-right p-3">
-            <a href="@Url.Action("Index", "Admin")" class="text-white ml-3">Админка</a>
-            <a asp-action="Book" class="text-white ml-3">Книги</a>
-            <a asp-route="#" class="text-white ml-3">Журналы</a>
-            <a asp-route="#" class="text-white ml-3">Комиксы</a>
-            <a asp-route="#" class="text-white ml-3">Сувениры</a>
+            @if(User.IsInRole("admin"))
+                {<a href="@Url.Action("Index", "Admin")" class="text-white ml-3">Админка</a>}
+            <a href="@Url.Action("BookCatalog", "Catalog")" class="text-white ml-3">Книги</a>
+            <a href="@Url.Action("Cart", "Account")" class="text-white ml-3">Корзина</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Profile", "Account")" class="text-white ml-3">Мой профиль</a>
+                <a href="@Url.Action("Logout", "Account")" class="text-white ml-3">Выйти</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Account")" class="text-white ml-3">Войти</a>
+                <a href="@Url.Action("Register", "Account")" class="text-white ml-3">Зарегистрироваться</a>
+            }
         </nav>
     </header>
     <div>
         @RenderBody()
     </div>
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/slick-1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+           $('.multiple-items').slick({
+      infinite: true,
+      dots: true,
+      slidesToShow: 5,
+      slidesToScroll: 1
+    });
+    });
+  </script>
 </body>
 </html>

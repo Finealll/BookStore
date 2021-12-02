@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Arch.EntityFrameworkCore.UnitOfWork;
 using BookStore.Entities.Products;
 using BookStore.Entities.BaseObjects;
-
+using BookStore.Entities.BookAdditionals;
 namespace WebUI.Controllers
 {
     public class ProductController : Controller
@@ -27,7 +27,10 @@ namespace WebUI.Controllers
         [HttpGet]
         public IActionResult Book(int id)
         {
-            var book = _unitOfWork.GetRepository<Book>().GetAll().Where(book => book.ID == id && book.isArchived == false);
+            Book book = _unitOfWork.GetRepository<Book>().GetAll()
+                .Where(book => book.ID == id).First();
+            book.Author = _unitOfWork.GetRepository<Author>().GetAll().Where(author => author.ID == book.AuthorId).First();
+            book.Jenre = _unitOfWork.GetRepository<Jenre>().GetAll().Where(jenre => jenre.ID == book.JenreId).First();
             return View(book);
         }
     }

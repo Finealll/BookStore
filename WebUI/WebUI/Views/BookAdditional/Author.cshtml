@@ -1,0 +1,41 @@
+﻿@model BookStore.Entities.BookAdditionals.Author
+
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="w-100 rounded" src="@Model.ImageLink"/>
+        </div>
+        <div class="col-8">
+            <div class="display-3">@Model.Name</div>
+            <br />
+            <br />
+            <ul>
+                @if(Model.Birthday != null) 
+                    {<li>Дата рождения: @Model.Birthday</li>}
+                @if(Model.DayOfTheDead != null) 
+                    {<li>Дата смерти: @Model.DayOfTheDead</li>}
+            </ul>
+            <br />
+            <br />
+            <div>@Model.Description</div>
+        </div>
+    </div>
+    <br />
+    <br />
+    @if (ViewBag.Books != null)
+    {
+        <h2>Книги автора:</h2>
+        <div class="slider multiple-items">   
+            @foreach (BookStore.Entities.Products.Book product in ViewBag.Books)
+            {
+                <a href="@Url.Action("Book", "Product", new {id = product.ID})" class="rounded p-3" style="height: 240px;">
+                    <div class="" style="background-image: url(@product.PhotoLink); height: 80%; background-size:cover; background-repeat:no-repeat;"> </div>
+                    <div>@product.Name</div>
+                    <div>@product.Cost</div>
+                </a>
+            }
+        </div>
+    }
+</div>

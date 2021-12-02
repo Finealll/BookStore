@@ -1,0 +1,50 @@
+﻿@model BookStore.Entities.Accounting.User
+<div class="container">
+    <h2>Добавление Пользователя:</h2>
+    <form method="post">
+        <br />
+        <label asp-for="Name">Имя:</label>
+        <input asp-for="Name" />
+        <br />
+        <label asp-for="Birthday">День рождения:</label>
+        <input type="date" asp-for="Birthday" />
+        <br />
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" />
+        <br />
+        <label asp-for="Password">Пароль:</label>
+        <input asp-for="Password" />
+        <br /><br />
+        <label asp-for="RoleId">Роль:</label>
+        <select asp-for="RoleId">
+            @foreach(BookStore.Entities.Accounting.Role role in ViewBag.Roles)
+            {
+                <option value="@role.ID">@role.Name</option>
+            }
+        </select>
+        <button type="submit">Отправить</button>
+    </form>
+    <h2>Список пользователей:</h2>
+    <table>
+        <thead>
+            <tr>Id</tr>
+            <tr>Имя</tr>
+            <tr>Дата рождения</tr>
+            <tr>Email</tr>
+            <tr>Пароль</tr>
+            <tr>Роль</tr>
+        </thead>
+        <tbody>
+            @foreach(BookStore.Entities.Accounting.User user in ViewBag.Users){
+                <tr>
+                    <td>@user.ID</td>
+                    <td>@user.Name</td>
+                    <td>@user.Birthday</td>
+                    <td>@user.Email</td>
+                    <td>@user.Password</td>
+                    <td>@user.Role.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -23,6 +23,9 @@
         }
     </select>
     <br />
+    <label asp-for="Description">Описание:</label>
+    <textarea asp-for="Description"></textarea>
+    <br />
     <label asp-for="Publisher">Издательство:</label>
     <input asp-for="Publisher" />
     <br />
@@ -72,8 +75,8 @@
             <tr>
                 <td>@book.ID</td>
                 <td>@book.Name</td>
-                <td>@book.Author</td>
-                <td>@book.Jenre</td>
+                <td>@book.Author.Name</td>
+                <td>@book.Jenre.Name</td>
                 <td>@book.YearOfPublishing</td>
                 <td>@book.ISBN</td>
                 <td>@book.NumberOfPages</td>

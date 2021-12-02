@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using BookStore.Entities.BaseObjects;
 using BookStore.Entities.Products;
 using BookStore.Entities.BookAdditionals;
+using Microsoft.AspNetCore.Authorization;
+using BookStore.Entities.Accounting;
 
 namespace WebUI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -42,6 +45,7 @@ namespace WebUI.Controllers
         [HttpGet]
         public IActionResult Jenre()
         {
+            ViewBag.Jenres = _unitOfWork.GetRepository<Jenre>().GetAll();
             return View();
         }
 
@@ -73,6 +77,40 @@ namespace WebUI.Controllers
             return "Добавлено!";
         }
 
+        [HttpGet]
+        public IActionResult User()
+        {
+            ViewBag.Roles = _unitOfWork.GetRepository<Role>().GetAll();
+            ViewBag.Users = _unitOfWork.GetRepository<User>().GetAll();
+            return View();
+        }
+
+        [HttpPost]
+        public string User(User user)
+        {
+            _unitOfWork.GetRepository<User>().Insert(user);
+            _unitOfWork.SaveChanges();
+
+
+            return "Добавлено!";
+        }
+
+        [HttpGet]
+        public IActionResult Role()
+        {
+            ViewBag.Roles = _unitOfWork.GetRepository<Role>().GetAll();
+            return View();
+        }
+
+        [HttpPost]
+        public string Role(Role role)
+        {
+            _unitOfWork.GetRepository<Role>().Insert(role);
+            _unitOfWork.SaveChanges();
+
+
+            return "Добавлено!";
+        }
 
     }
 }
